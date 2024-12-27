@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About GreenAura</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<style>
+  /* General Styles */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #f3fdfc;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  font-weight: 300;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #32a852, #3ed077);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.header-content h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.header-content p {
+  font-size: 1.2rem;
+}
+
+/* About Section */
+.about-section {
+  padding: 50px 20px;
+  background: white;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  color: #2a7b50;
+}
+
+.founder-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: #f9fdfb;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.founder-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.founder-img:hover {
+  transform: scale(1.1);
+}
+
+.founder-info {
+  max-width: 500px;
+  text-align: left;
+}
+
+.founder-info h3 {
+  color: #32a852;
+  margin-bottom: 10px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.social-link img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.social-link:hover img {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+/* Mission Section */
+.mission-section {
+  padding: 50px 20px;
+  background: #eafbf4;
+  text-align: center;
+}
+
+.mission-section p {
+  max-width: 700px;
+  margin: 20px auto 0;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #2a7b50;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .founder-card {
+
+</style>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <h1>GreenAura</h1>
+      <p>Creating a sustainable future, one step at a time.</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- About Section -->
+    <section class="about-section">
+      <div class="about-content">
+        <h2 class="section-title">Meet Our Founder</h2>
+        <div class="founder-card">
+          <img src="data:image/jpeg;base64,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" alt="Founder of GreenAura" class="founder-img">
+          <div class="founder-info">
+            <h3>Jane Doe</h3>
+            <p>Jane is the heart and soul of GreenAura, with a vision to inspire sustainable practices that nurture our planet.</p>
+            <div class="social-icons">
+              <a href="https://instagram.com/greenaura" target="_blank" class="social-link">
+                <img src="instagram-icon.svg" alt="Instagram">
+              </a>
+              <a href="https://facebook.com/greenaura" target="_blank" class="social-link">
+                <img src="facebook-icon.svg" alt="Facebook">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+      <div class="mission-content">
+        <h2 class="section-title">Our Mission</h2>
+        <p>At GreenAura, we believe in promoting a greener tomorrow through education, innovation, and action. Together, we can build a sustainable and eco-friendly world.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 GreenAura. All rights reserved.</p>
+  </footer>
+
+  <script src="scripts.js">document.addEventListener('DOMContentLoaded', () => {
+  console.log('GreenAura About Page Loaded!');
+});
+</script>
+</body>
+</html>
