@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWVCxbRvfJ4UxoFmVlPuZitt1dOlMX1WrdwQ&s");
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: rgb(0, 0, 0);
+            font-size: 20px;
+        }
+        .container {
+            height: 550px;
+            width: 400px;
+            margin: auto;
+            display: flex;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 100px;
+            border: solid rgb(16, 5, 5) 1px;
+            backdrop-filter: blur(50px);
+        }
+        #box {
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input {
+            width: 100%;
+            outline: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+        }
+        #signin {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="signup-form">
+            <div id="box">
+                <h1>SIGN UP</h1>
+                User Name: <input type="text" id="username" required placeholder="Name"><br>
+                E-Mail: <input type="email" id="email" required placeholder="E-mail"><br>
+                Password: <input type="password" id="password" required placeholder="Password"><br>
+                <div id="signin">
+                    <p>Already have an account?</p><a href="login.html">Log In</a>
+                </div>
+                <input type="submit" value="SIGN UP"><br>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.getElementById("signup-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const username = document.getElementById("username").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+
+            // Basic validation
+            if (!username || !email || !password) {
+                alert("All fields are required!");
+                return;
+            }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+            
+            // Retrieve users from localStorage or initialize as an empty array
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            // Check for existing user with the same email
+            if (users.some(user => user.email === email)) {
+                alert("Email is already registered.");
+                return;
+            }
+
+            // Add new user to the users array
+            users.push({ username, email, password });
+
+            // Save updated users array to localStorage
+            localStorage.setItem("users", JSON.stringify(users));
+
+            alert("Sign-up successful! Your data is stored locally.");
+            document.getElementById("signup-form").reset(); // Clear form
+        });
+    </script>
+</body>
+</html>
