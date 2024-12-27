@@ -300,7 +300,7 @@ footer {
         
         <!-- Hero Section -->
         <section id="home" class="hero">
-            <h2>Welcome to Leafy Island</h2>
+            <h2>Welcome to GreenAura</h2>
             <p>Your one-stop destination for all things green!</p>
             <button onclick="shopNow()">Shop Now</button>
         </section>
@@ -405,6 +405,178 @@ footer {
     </footer>
 
     <!-- JavaScript -->
-    <script src="script.js"></script>
+    <script src="script.js">// Smooth Scroll for Navigation
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+        
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Hero Section Button Click (Scroll to Product Section)
+        function shopNow() {
+            document.querySelector('#products').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+        
+        // Search Feature (Dummy suggestion function)
+        const searchInput = document.getElementById('search-bar');
+        const searchButton = document.querySelector('.search-block button');
+        
+        searchButton.addEventListener('click', function() {
+            let query = searchInput.value.toLowerCase();
+            if(query === '') {
+                alert('Please enter a search query!');
+            } else {
+                alert('Searching for: ' + query);
+            }
+        });
+        
+        // Image Hover Effect for Zoom
+        const images = document.querySelectorAll('.image-gallery img');
+        images.forEach(img => {
+            img.addEventListener('mouseover', function() {
+                this.style.transform = 'scale(1.1)';
+            });
+        
+            img.addEventListener('mouseout', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });</script>
+</body>
+</html>
+login.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        /* Basic Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Main Login Box */
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Input Fields */
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Submit Button */
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Error Message Popup */
+        .error-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 20px;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .error-popup button {
+            background-color: #721c24;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .error-popup button:hover {
+            background-color: #5a1a1d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Form -->
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm" onsubmit="return validateLogin()">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required placeholder="Enter your username">
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required placeholder="Enter your password">
+            
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <!-- Error Popup -->
+    <div class="error-popup" id="errorPopup">
+        <p>Invalid username or password. Please try again.</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <script>
+        function validateLogin() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Example validation (you can replace this with real validation)
+            if (username !== "admin" || password !== "password123") {
+                document.getElementById("errorPopup").style.display = "block";
+                return false; // Prevent form submission
+            }
+            alert("Login successful!");
+            return true;
+        }
+
+        function closePopup() {
+            document.getElementById("errorPopup").style.display = "none";
+        }
+    </script>
+
 </body>
 </html>
