@@ -359,11 +359,10 @@ nav ul li a:hover::after {
         <section id="gallery">
             <h2>Our Beautiful Plants</h2>
             <div class="image-gallery">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLvYogr9OkNlrmLz5EBbZlgBxd5ilNQ_YLjQ&s" alt="Indoor Plant 1">
+               
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAO-PGwtHNCcHVu8BaFfGo1XVkZ5GHMn_DvQ&s" alt="Indoor Plant 2">
                 <img src="https://unlimitedgreens.com/cdn/shop/articles/Exotic_Plants_Blog.png?crop=center&height=1024&v=1693033248&width=1024" alt="Exotic Plant 1">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuAPBzT8EuEoStDbHMDfZcSDOq3u5EY5am9Q&s" alt="Succulent Plant">
-                <img src="https://m.media-amazon.com/images/I/61hcnbtyRsL._AC_UF1000,1000_QL80_.jpg" alt="Outdoor Plant 1">
+               
             </div>
         </section>
 
