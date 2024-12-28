@@ -210,6 +210,8 @@
 <body>
     <!-- Header -->
     <header>
+        <div class="logo">
+            <img src="galogo.jpg"  /> </div>
         <h1>Welcome to GreenAura</h1>
     </header>
 
