@@ -374,10 +374,7 @@ footer {
              }
           </style>
         <p class="b">At Leafy Island, we believe in the beauty and tranquility that plants bring to our lives. Our mission is to offer a variety of plants for all types of environments, from cozy indoor spaces to vibrant outdoor gardens.</p>
-        <div class="about-images">
-            <!-- Added Image in About Section -->
-            <img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_MQWzCKj6VI37Jbx7dc_ED_ZzMhDAoGgsQw&s"" alt="About Leafy Island" style="width: 300px; margin-top: 20px;">
-        </div>
+       
     </section>
     
     
