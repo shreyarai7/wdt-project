@@ -109,6 +109,7 @@ a:hover {
     </form>
     <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
     
+<script>
     document.getElementById('loginForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -124,12 +125,11 @@ a:hover {
         // Set logged-in user in local storage
         localStorage.setItem('loggedInUser', JSON.stringify(user));
         // Redirect to the main application
-        window.location.href = 'popo.html';
+        window.location.href = 'welcome.html';
     } else {
         alert('Invalid username or password.');
     }
 });
 </script>
 </body>
-
 </html>
