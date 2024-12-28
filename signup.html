@@ -3,101 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <style>
-        body {
-            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWVCxbRvfJ4UxoFmVlPuZitt1dOlMX1WrdwQ&s");
-            background-repeat: no-repeat;
-            background-size: cover;
-            color: rgb(0, 0, 0);
-            font-size: 20px;
-        }
-        .container {
-            height: 550px;
-            width: 400px;
-            margin: auto;
-            display: flex;
-            position: relative;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 100px;
-            border: solid rgb(16, 5, 5) 1px;
-            backdrop-filter: blur(50px);
-        }
-        #box {
-            position: relative;
-            justify-content: center;
-            align-items: center;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        input {
-            width: 100%;
-            outline: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-        }
-        #signin {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-        }
-    </style>
+    <title>Signup</title>
+    <script defer src="signup.js"></script>
 </head>
+<style>
+    /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+form {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 24px;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    background-color: #4caf50;
+    color: white;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+p {
+    text-align: center;
+    margin-top: 1rem;
+    color: #666;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    form {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    input, button {
+        font-size: 14px;
+    }
+}
+</style>
 <body>
-    <div class="container">
-        <form id="signup-form">
-            <div id="box">
-                <h1>SIGN UP</h1>
-                User Name: <input type="text" id="username" required placeholder="Name"><br>
-                E-Mail: <input type="email" id="email" required placeholder="E-mail"><br>
-                Password: <input type="password" id="password" required placeholder="Password"><br>
-                <div id="signin">
-                    <p>Already have an account?</p><a href="login.html">Log In</a>
-                </div>
-                <input type="submit" value="SIGN UP"><br>
-            </div>
-        </form>
-    </div>
-    <script>
-        document.getElementById("signup-form").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent form submission
+    <h1>Signup</h1>
+    <form id="signupForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+        <br>
+        <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Login here</a></p>
 
-            const username = document.getElementById("username").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value;
 
-            // Basic validation
-            if (!username || !email || !password) {
-                alert("All fields are required!");
-                return;
-            }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                alert("Please enter a valid email address.");
-                return;
-            }
-            
-            // Retrieve users from localStorage or initialize as an empty array
-            let users = JSON.parse(localStorage.getItem("users")) || [];
+<script>
+    document.getElementById('signupForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-            // Check for existing user with the same email
-            if (users.some(user => user.email === email)) {
-                alert("Email is already registered.");
-                return;
-            }
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-            // Add new user to the users array
-            users.push({ username, email, password });
+    // Check if the user already exists in local storage
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    const userExists = users.some(user => user.username === username);
 
-            // Save updated users array to localStorage
-            localStorage.setItem("users", JSON.stringify(users));
-
-            alert("Sign-up successful! Your data is stored locally.");
-            document.getElementById("signup-form").reset(); // Clear form
-        });
-    </script>
+    if (userExists) {
+        alert('User already exists. Please log in.');
+    } else {
+        // Add the new user to local storage
+        users.push({ username, password });
+        localStorage.setItem('users', JSON.stringify(users));
+        alert('Signup successful! You can now log in.');
+        window.location.href = 'login.html';
+    }
+});
+</script>
 </body>
+
+
 </html>
