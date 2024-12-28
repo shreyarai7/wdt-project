@@ -425,7 +425,7 @@ nav ul li a:hover::after {
         <p class="b">At Leafy Island, we believe in the beauty and tranquility that plants bring to our lives. Our mission is to offer a variety of plants for all types of environments, from cozy indoor spaces to vibrant outdoor gardens.</p>
         <div class="about-images">
             <!-- Added Image in About Section -->
-            <img src=hs"" alt="About Leafy Island" style="width: 300px; margin-top: 20px;">
+            
         </div>
     </section>
     
