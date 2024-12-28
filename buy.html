@@ -1,196 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Address and Payment Form</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Background styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Payment Form */
+        .payment-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #f39c12;
+            margin-bottom: 20px;
+        }
+
+        label {
+            color: #fff;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="password"],
+        input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #f39c12;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #e67e22;
+        }
+
+        /* Popup Styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+            color: #fff;
+            text-align: center;
+        }
+
+        .popup h3 {
+            font-size: 24px;
+            color: #f39c12;
+        }
+
+        .popup p {
+            font-size: 16px;
+            margin: 15px 0;
+        }
+
+        .popup button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .popup button:hover {
+            background-color: #c0392b;
+        }
+
+        .popup .return-btn {
+            background-color: #27ae60;
+        }
+
+        .popup .return-btn:hover {
+            background-color: #2ecc71;
+        }
+
+        .popup.show {
+            display: block;
+        }
+    </style>
 </head>
-<style>
-  /* General Styles */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  width: 50%;
-  margin: 40px auto;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px 30px;
-}
-
-h1 {
-  text-align: center;
-  color: #333;
-  font-size: 28px;
-}
-
-/* Form Styling */
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-fieldset {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  padding: 15px;
-}
-
-legend {
-  font-weight: bold;
-  color: #555;
-}
-
-label {
-  display: block;
-  margin-top: 15px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
-}
-
-input, textarea, button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  color: #333;
-}
-
-textarea {
-  resize: none;
-}
-
-button {
-  background-color: #4CAF50;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
-button:hover {
-  background-color: #45a049;
-  transition: background-color 0.3s ease;
-}
-
-/* Success Page Styling */
-p {
-  font-size: 18px;
-  color: #666;
-  text-align: center;
-  margin: 20px 0;
-}
-
-a button {
-  width: auto;
-  padding: 10px 20px;
-  background-color: #007BFF;
-  font-size: 14px;
-  color: #fff;
-}
-
-a button:hover {
-  background-color: #0056b3;
-  transition: background-color 0.3s ease;
-}
-</style>
 <body>
-  <div class="container">
-    <h1>Address and Payment Details</h1>
-    <form id="paymentForm">
-      <!-- Address Section -->
-      <fieldset>
-        <legend>Address Details</legend>
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name" required pattern="[A-Za-z ]{2,}" title="Name should contain only letters and spaces."><br>
 
-        <label for="address">Address:</label>
-        <textarea id="address" name="address" rows="3" required></textarea><br>
+    <!-- Payment Form -->
+    <div class="payment-container">
+        <h2>Payment Details</h2>
+        <form id="paymentForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
 
-        <label for="city">City:</label>
-        <input type="text" id="city" name="city" required pattern="[A-Za-z ]{2,}" title="City should contain only letters and spaces."><br>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-        <label for="zip">ZIP Code:</label>
-        <input type="text" id="zip" name="zip" required pattern="\d{5}" title="ZIP Code must be 5 digits."><br>
-      </fieldset>
+            <label for="cardNumber">Card Number</label>
+            <input type="number" id="cardNumber" name="cardNumber" placeholder="Enter card number" required>
 
-      <!-- Payment Section -->
-      <fieldset>
-        <legend>Payment Details</legend>
-        <label for="cardNumber">Card Number:</label>
-        <input type="text" id="cardNumber" name="cardNumber" required pattern="\d{16}" title="Card number must be 16 digits."><br>
+            <label for="expiryDate">Expiry Date</label>
+            <input type="date" id="expiryDate" name="expiryDate" required>
 
-        <label for="expiryDate">Expiry Date:</label>
-        <input type="month" id="expiryDate" name="expiryDate" required><br>
+            <label for="cvv">CVV</label>
+            <input type="password" id="cvv" name="cvv" placeholder="Enter your CVV" required>
 
-        <label for="cvv">CVV:</label>
-        <input type="text" id="cvv" name="cvv" required pattern="\d{3}" title="CVV must be 3 digits."><br>
-      </fieldset>
+            <input type="submit" value="Submit Payment">
+        </form>
+    </div>
 
-      <button type="submit">Pay Now</button>
-    </form>
-  </div>
-  <script src="script.js">// script.js
-    document.getElementById("paymentForm").addEventListener("submit", function (event) {
-      event.preventDefault();
-    
-      const name = document.getElementById("name").value.trim();
-      const address = document.getElementById("address").value.trim();
-      const city = document.getElementById("city").value.trim();
-      const zip = document.getElementById("zip").value.trim();
-      const cardNumber = document.getElementById("cardNumber").value.trim();
-      const expiryDate = document.getElementById("expiryDate").value;
-      const cvv = document.getElementById("cvv").value.trim();
-    
-      // Validation
-      if (!/^[A-Za-z ]{2,}$/.test(name)) {
-        alert("Please enter a valid name.");
-        return;
-      }
-    
-      if (!address) {
-        alert("Address cannot be empty.");
-        return;
-      }
-    
-      if (!/^[A-Za-z ]{2,}$/.test(city)) {
-        alert("Please enter a valid city.");
-        return;
-      }
-    
-      if (!/^\d{5}$/.test(zip)) {
-        alert("ZIP Code must be 5 digits.");
-        return;
-      }
-    
-      if (!/^\d{16}$/.test(cardNumber)) {
-        alert("Card number must be 16 digits.");
-        return;
-      }
-    
-      if (!expiryDate) {
-        alert("Please select an expiry date.");
-        return;
-      }
-    
-      if (!/^\d{3}$/.test(cvv)) {
-        alert("CVV must be 3 digits.");
-        return;
-      }
-    
-      alert("Form submitted successfully!");
-      </script>
+    <!-- Success Popup -->
+    <div id="popup" class="popup">
+        <h3>Payment Successful!</h3>
+        <p>Your payment was successfully processed. Thank you for your purchase!</p>
+        <button onclick="closePopup()">Close</button>
+        <button class="return-btn" onclick="goHome()">Return to Home</button>
+    </div>
+
+    <script>
+        'use strict';
+
+        // Form Submission
+        const form = document.getElementById('paymentForm');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const cardNumber = document.getElementById('cardNumber').value.trim();
+            const expiryDate = document.getElementById('expiryDate').value.trim();
+            const cvv = document.getElementById('cvv').value.trim();
+
+            // Strict validations
+            if (name === "" || email === "" || cardNumber === "" || expiryDate === "" || cvv === "") {
+                alert("All fields are required!");
+                return;
+            }
+
+            if (!/^\d{13,19}$/.test(cardNumber)) {
+                alert("Please enter a valid card number (13-19 digits).");
+                return;
+            }
+
+            const today = new Date();
+            const expiry = new Date(expiryDate);
+            if (expiry < today) {
+                alert("The expiry date cannot be in the past.");
+                return;
+            }
+
+            if (!/^\d{3}$/.test(cvv)) {
+                alert("CVV must be a 3-digit number.");
+                return;
+            }
+
+            // Show the success popup
+            showPopup();
+        });
+
+        // Show popup
+        function showPopup() {
+            document.getElementById('popup').classList.add('show');
+        }
+
+        // Close popup
+        function closePopup() {
+            document.getElementById('popup').classList.remove('show');
+        }
+
+        // Redirect to home page
+        function goHome() {
+            window.location.href = 'haha.html'; // Change this to your actual home page URL
+        }
+    </script>
+
 </body>
 </html>
