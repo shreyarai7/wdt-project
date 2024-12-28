@@ -271,8 +271,7 @@ footer {
     <!-- Header Section -->
     <header>
         <div class="logo">
-            <img src="![image](https://github.com/user-attachments/assets/09d0487b-621d-465c-af2e-94dab14ab120)
-"  />
+            <img src="galogo.jpg"  />
             <h1>GreenAura</h1>
         </div>
         <nav>
