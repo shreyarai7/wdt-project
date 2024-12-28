@@ -333,7 +333,7 @@ nav ul li a:hover::after {
                 <li><a href="#home">Home🏡</a></li>
                 <li><a href="cer.html">Products</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="SIGNUP.HTML">login</a></li>
+                <li><a href="login.html">login</a></li>
             </ul>
         </nav>
     </header>
