@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="G - Your Green Companion for Plants & Gardening">
     <title>GreenAura</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <style>
   /* General Reset */
@@ -19,12 +19,12 @@
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    background-color: #83b2cf;
-    color: #450505;
+    background-color: hsl(131, 28%, 57%);
+    color: #814141;
 }
 
 h1, h2, h3 {
-    color: #2c3e50;
+    color: #091a01;
 }
 
 p {
@@ -36,7 +36,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #329635;
+    background-color: #215749 ;
     color: white;
     padding: 10px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -92,10 +92,21 @@ nav ul li a:hover {
 .hero p {
     font-size: 1.2rem;
 }
-
+.hero {
+            background: url('') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: hsl(247, 94%, 13%);
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
 .hero button {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #006804;
+    color: rgb(20, 24, 19);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -105,7 +116,7 @@ nav ul li a:hover {
 }
 
 .hero button:hover {
-    background-color: #080e08;
+    background-color: #1a3a1a;
 }
 
 /* Table Section */
@@ -114,7 +125,7 @@ table {
     margin: 20px auto;
     border-collapse: collapse;
     background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(75, 156, 68, 0.1);
 }
 
 caption {
@@ -130,14 +141,33 @@ th, td {
 }
 
 th {
-    background-color: #4CAF50;
+    background-color: #164068;
     color: white;
 }
 
 tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+.hero button:hover {
+    background-color: #388E3C;
+    transform: scale(1.1);
+}
 
+/* Search Block */
+.search-block {
+    display: flex;
+    justify-content: center;
+    margin: 30px auto;
+}
+
+#search-bar {
+    width: 50%;
+    padding: 15px;
+    font-size: 1rem;
+    border: 2px solid #4CAF50;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
 /* Contact Form */
 form {
     width: 60%;
@@ -178,13 +208,13 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #388E3C;
+    background-color: #2aa830;
 }
 
 /* Footer */
 footer {
     text-align: center;
-    background-color: #2c3e50;
+    background-color: #215749;
     color: white;
     padding: 10px 0;
     margin-top: 20px;
@@ -266,19 +296,28 @@ footer {
         grid-template-columns: 1fr;
     }
 }
-.button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    background-color: #4caf50;
+</style>
+<style>
+    nav ul li a {
+    position: relative;
+    color: #fff;
     text-decoration: none;
-    border-radius: 4px;
-    cursor: pointer;
+    font-weight: bold;
 }
 
-.button:hover {
-    background-color: #45a049;
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #fff;
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
 }
 </style>
 <body>
@@ -293,7 +332,7 @@ footer {
                 <li><a href="#home">Home🏡</a></li>
                 <li><a href="cer.html">Products</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="signup.html">sign-up</a></li>
+                <li><a href="SIGNUP.HTML">login</a></li>
             </ul>
         </nav>
     </header>
@@ -301,23 +340,19 @@ footer {
     <!-- Main Section -->
     <main>
         
+        
         <div class="search-block">
-            <label for="search-bar" class="sr-only">Search for plants</label>
-            <input 
-                type="text" 
-                id="search-bar" 
-                placeholder="Search indoor, outdoor, and exotic plants...." 
-                aria-label="Search indoor, outdoor, and exotic plants" 
-                required />
-            <button type="submit" aria-label="Submit search">🔍</button>
+            <input type="text" id="search-bar" placeholder="Search for plants...">
+            <button type="submit">Search</button>
         </div>
        
         <!-- Hero Section -->
         <section id="home" class="hero">
             <h2>Welcome to GreenAura</h2>
             <p>Your one-stop destination for all things green!</p>
-            <a href="cer.html" class="button">Shop Now</button>
+            <button onclick="shopNow()">Shop Now</button>
         </section>
+       
 
         <!-- Image Gallery Section -->
         <section id="gallery">
@@ -327,7 +362,7 @@ footer {
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAO-PGwtHNCcHVu8BaFfGo1XVkZ5GHMn_DvQ&s" alt="Indoor Plant 2">
                 <img src="https://unlimitedgreens.com/cdn/shop/articles/Exotic_Plants_Blog.png?crop=center&height=1024&v=1693033248&width=1024" alt="Exotic Plant 1">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuAPBzT8EuEoStDbHMDfZcSDOq3u5EY5am9Q&s" alt="Succulent Plant">
-                <img src="https://m.media-amazon.com/images/I/61hcnbtyRsL._AC_UF1000,1000_QL80_.jpg" alt="Outdoor Plant 1">
+                
             </div>
         </section>
 
@@ -365,7 +400,7 @@ footer {
         <div class="product-images">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0CyZ80ChIXohalcE-kPyN7qinifk85H7muw&s" alt="Indoor Plants" style="width: 300px; margin: 20px;">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwYI1YSkuxwMqhLXF367Ip1amze3JBmFdEAg&s" alt="Succulents" style="width: 300px; margin: 20px;">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi7g2MH01Yvl3hw6FnZgweVbubOGzkQuhJuA&s" alt="Herbs" style="width: 300px; margin: 20px;">
+           
         </div>
     </section>
     
@@ -388,7 +423,9 @@ footer {
              }
           </style>
         <p class="b">At Leafy Island, we believe in the beauty and tranquility that plants bring to our lives. Our mission is to offer a variety of plants for all types of environments, from cozy indoor spaces to vibrant outdoor gardens.</p>
-       g src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_MQWzCKj6VI37Jbx7dc_ED_ZzMhDAoGgsQw&s"" alt="About Leafy Island" style="width: 300px; margin-top: 20px;">
+        <div class="about-images">
+            <!-- Added Image in About Section -->
+            <img src=hs"" alt="About Leafy Island" style="width: 300px; margin-top: 20px;">
         </div>
     </section>
     
@@ -413,51 +450,10 @@ footer {
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Leafy Island | Designed for Plant Lovers</p>
+        <p>&copy; 2024 GreenAura | Designed for Plant Lovers</p>
     </footer>
 
     <!-- JavaScript -->
-    <script src="script.js">// Smooth Scroll for Navigation
-        document.querySelectorAll('nav ul li a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-        
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Hero Section Button Click (Scroll to Product Section)
-        function shopNow() {
-            document.querySelector('#products').scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-        
-        // Search Feature (Dummy suggestion function)
-        const searchInput = document.getElementById('search-bar');
-        const searchButton = document.querySelector('.search-block button');
-        
-        searchButton.addEventListener('click', function() {
-            let query = searchInput.value.toLowerCase();
-            if(query === '') {
-                alert('Please enter a search query!');
-            } else {
-                alert('Searching for: ' + query);
-            }
-        });
-        
-        // Image Hover Effect for Zoom
-        const images = document.querySelectorAll('.image-gallery img');
-        images.forEach(img => {
-            img.addEventListener('mouseover', function() {
-                this.style.transform = 'scale(1.1)';
-            });
-        
-            img.addEventListener('mouseout', function() {
-                this.style.transform = 'scale(1)';
-            });
-        });</script>
+    <script src="script.js"></script>
 </body>
 </html>
