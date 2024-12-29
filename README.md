@@ -219,7 +219,7 @@
     <!-- Navigation -->
     <nav>
         <a href="popo.html">Home</a>
-        <a href="cer.html">Products</a>
+        
         <a href="about.html">About</a>
         <a href="login.html">Login</a>
     </nav>
