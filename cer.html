@@ -255,5 +255,15 @@ h2 {
     }
 
   </script>
+  <script>
+        function showLoginPrompt() {
+            // Show an alert box asking user to login
+            const isLoginConfirmed = confirm("You need to login first. Do you want to go to the login page?");
+            if (isLoginConfirmed) {
+                // If user clicks OK, redirect to the login page
+                window.location.href = 'loginpage.html';
+            }
+        }
+    </script>
 </body>
 </html>
