@@ -303,9 +303,9 @@
 
     // Function to attach event listeners to buttons and product cart div
     function attachLoginPrompt() {
-        const shopNowButton = document.getElementById('shop-now'); // Button to Buy Now
-        const addToCartButton = document.getElementById('product-cart'); // Button to Add to Cart
-        const productCart = document.getElementById('product-cart'); // Div for the product cart
+        const shopNowButton = document.getElementById("shop-now"); // Button to Buy Now
+        const addToCartButton = document.getElementById("product-cart"); // Button to Add to Cart
+        const productCart = document.getElementById('shop-now'); // Div for the product cart
 
         // Attach event listener to the "Buy Now" button
         if (buyNowButton) {
