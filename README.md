@@ -290,5 +290,44 @@
             });
         });
     </script>
+    <script>
+    function showLoginPrompt() {
+        // Show a custom alert box with a message asking user to login
+        const isLoginConfirmed = confirm("You need to log in to make a purchase or view your cart. Would you like to go to the login page?");
+        if (isLoginConfirmed) {
+            // If user clicks OK, redirect to the login page
+            window.location.href = 'login.html';
+        }
+    }
+
+    // Function to attach event listeners to buttons
+    function attachLoginPrompt() {
+        const shopNowButton = document.getElementById('shop-now'); // Button to start shopping
+        const addToCartButton = document.getElementsByClassName('addToCartButton'); // All Add to Cart buttons (assuming multiple items)
+
+        // Attach event listener to the "Shop Now" button
+        if (shopNowButton) {
+            shopNowButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default action of the button (navigation)
+                showLoginPrompt(); // Show login prompt
+            });
+        }
+
+        // Attach event listener to all "Add to Cart" buttons
+        if (addToCartButton.length > 0) {
+            for (let button of addToCartButton) {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent the default action (adding item to cart)
+                    showLoginPrompt(); // Show login prompt
+                });
+            }
+        }
+    }
+
+    // Attach login prompt functionality when the page loads
+    window.onload = function() {
+        attachLoginPrompt();
+    };
+</script>
 </body>
 </html>
