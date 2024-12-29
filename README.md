@@ -222,7 +222,7 @@
         <a href ="cer.html">products</a>
         <a href="about.html">About</a>
         <a href="login.html">Login</a>
-        <a href="contat.html>contact us</a>
+      
     </nav>
 
     <!-- Main Section -->
