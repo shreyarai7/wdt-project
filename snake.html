@@ -185,6 +185,42 @@
       alert("Added to Cart!");
     }
   </script>
+<script>
+    function showLoginPrompt() {
+        // Show a custom alert box with a message asking user to login
+        const isLoginConfirmed = confirm("You need to log in to make a purchase or view your cart. Would you like to go to the login page?");
+        if (isLoginConfirmed) {
+            // If user clicks OK, redirect to the login page
+            window.location.href = 'login.html';
+        }
+    }
 
+    // Function to attach event listeners to buttons
+    function attachLoginPrompt() {
+        const buyNowButton = document.getElementById('buy-now-button'); // Button to Buy Now
+        const addToCartButton = document.getElementById('cart-items'); // Button to Add to Cart
+
+        // Attach event listener to the "Buy Now" button
+        if (buyNowButton) {
+            buyNowButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default action of the button (navigation)
+                showLoginPrompt(); // Show login prompt
+            });
+        }
+
+        // Attach event listener to the "Add to Cart" button
+        if (addToCartButton) {
+            addToCartButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default action (adding item to cart)
+                showLoginPrompt(); // Show login prompt
+            });
+        }
+    }
+
+    // Attach login prompt functionality when the page loads
+    window.onload = function() {
+        attachLoginPrompt();
+    };
+</script>
 </body>
 </html>
