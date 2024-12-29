@@ -290,7 +290,8 @@
             });
         });
     </script>
-    <script>
+    
+   <script>
     function showLoginPrompt() {
         // Show a custom alert box with a message asking user to login
         const isLoginConfirmed = confirm("You need to log in to make a purchase or view your cart. Would you like to go to the login page?");
@@ -300,27 +301,34 @@
         }
     }
 
-    // Function to attach event listeners to buttons
+    // Function to attach event listeners to buttons and product cart div
     function attachLoginPrompt() {
-        const shopNowButton = document.getElementById('shop-now'); // Button to start shopping
-        const addToCartButton = document.getElementsByClassName('product-card'); // All Add to Cart buttons (assuming multiple items)
+        const shopNowButton = document.getElementById('shop-now'); // Button to Buy Now
+        const addToCartButton = document.getElementById('product-cart'); // Button to Add to Cart
+        const productCart = document.getElementById('product-cart'); // Div for the product cart
 
-        // Attach event listener to the "Shop Now" button
-        if (shopNowButton) {
-            shopNowButton.addEventListener('click', function(event) {
+        // Attach event listener to the "Buy Now" button
+        if (buyNowButton) {
+            buyNowButton.addEventListener('click', function(event) {
                 event.preventDefault(); // Prevent the default action of the button (navigation)
                 showLoginPrompt(); // Show login prompt
             });
         }
 
-        // Attach event listener to all "product-card" buttons
-        if (addToCartButton.length > 0) {
-            for (let button of addToCartButton) {
-                button.addEventListener('click', function(event) {
-                    event.preventDefault(); // Prevent the default action (adding item to cart)
-                    showLoginPrompt(); // Show login prompt
-                });
-            }
+        // Attach event listener to the "Add to Cart" button
+        if (addToCartButton) {
+            addToCartButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default action (adding item to cart)
+                showLoginPrompt(); // Show login prompt
+            });
+        }
+
+        // Attach event listener to the "productCart" div (if user interacts with the product cart)
+        if (productCart) {
+            productCart.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default behavior (viewing cart or navigating)
+                showLoginPrompt(); // Show login prompt
+            });
         }
     }
 
