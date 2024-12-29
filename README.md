@@ -278,7 +278,7 @@
         // Search Functionality
         document.getElementById('search-button').addEventListener('click', function () {
             const query = document.getElementById('search-bar').value.toLowerCase();
-            const products = document.querySelectorAll('.product-card');
+            const products = document.querySelectorAll('product-card');
 
             products.forEach(product => {
                 const title = product.querySelector('h3').textContent.toLowerCase();
@@ -303,7 +303,7 @@
     // Function to attach event listeners to buttons
     function attachLoginPrompt() {
         const shopNowButton = document.getElementById('shop-now'); // Button to start shopping
-        const addToCartButton = document.getElementsByClassName('addToCartButton'); // All Add to Cart buttons (assuming multiple items)
+        const addToCartButton = document.getElementsByClassName('product-card'); // All Add to Cart buttons (assuming multiple items)
 
         // Attach event listener to the "Shop Now" button
         if (shopNowButton) {
