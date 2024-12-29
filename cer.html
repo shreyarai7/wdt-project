@@ -255,15 +255,42 @@ h2 {
     }
 
   </script>
-  <script>
-        function showLoginPrompt() {
-            // Show an alert box asking user to login
-            const isLoginConfirmed = confirm("You need to login first. Do you want to go to the login page?");
-            if (isLoginConfirmed) {
-                // If user clicks OK, redirect to the login page
-                window.location.href = 'login.html';
-            }
+<script>
+    function showLoginPrompt() {
+        // Show an alert box asking the user to login
+        const isLoginConfirmed = confirm("You need to login first. Do you want to go to the login page?");
+        if (isLoginConfirmed) {
+            // If user clicks OK, redirect to the login page
+            window.location.href = 'loginpage.html';
         }
-    </script>
+    }
+
+    // Function to attach event listeners to buttons
+    function attachLoginPrompt() {
+        // Get the "Buy Now" and "Add to Cart" buttons by their ID or class
+        const buyNowButton = document.getElementById('buyNowButton'); // Example button ID
+        const addToCartButton = document.getElementById('addToCartButton'); // Example button ID
+
+        // Attach event listeners to the buttons
+        if (buyNowButton) {
+            buyNowButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default action
+                showLoginPrompt(); // Show login prompt
+            });
+        }
+
+        if (addToCartButton) {
+            addToCartButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default action
+                showLoginPrompt(); // Show login prompt
+            });
+        }
+    }
+
+    // Attach login prompt functionality when the page loads
+    window.onload = function() {
+        attachLoginPrompt();
+    };
+</script>
 </body>
 </html>
