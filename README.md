@@ -313,7 +313,7 @@
             });
         }
 
-        // Attach event listener to all "Add to Cart" buttons
+        // Attach event listener to all "product-card" buttons
         if (addToCartButton.length > 0) {
             for (let button of addToCartButton) {
                 button.addEventListener('click', function(event) {
