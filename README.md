@@ -277,7 +277,7 @@
 
         // Search Functionality
         document.getElementById('search-button').addEventListener('click', function () {
-            const query = document.getElementById('search-bar').value.toLowerCase();
+            const query = document.getElementById('shop-now').value.toLowerCase();
             const products = document.querySelectorAll('product-card');
 
             products.forEach(product => {
@@ -290,8 +290,7 @@
             });
         });
     </script>
-    
-   <script>
+    <script>
     function showLoginPrompt() {
         // Show a custom alert box with a message asking user to login
         const isLoginConfirmed = confirm("You need to log in to make a purchase or view your cart. Would you like to go to the login page?");
@@ -303,9 +302,9 @@
 
     // Function to attach event listeners to buttons and product cart div
     function attachLoginPrompt() {
-        const shopNowButton = document.getElementById("shop-now"); // Button to Buy Now
-        const addToCartButton = document.getElementById("product-cart"); // Button to Add to Cart
-        const productCart = document.getElementById('shop-now'); // Div for the product cart
+        const buyNowButton = document.getElementById('shop-now'); // Button to Buy Now
+        const addToCartButton = document.getElementById('product-cards'); // Button to Add to Cart
+        const productCart = document.getElementById('productCart'); // Div for the product cart
 
         // Attach event listener to the "Buy Now" button
         if (buyNowButton) {
@@ -337,5 +336,6 @@
         attachLoginPrompt();
     };
 </script>
+    
 </body>
 </html>
