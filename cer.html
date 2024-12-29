@@ -237,6 +237,23 @@ h2 {
 
       cartTotal.textContent = total.toFixed(2);
     }
+     function checkLogin() {
+      const isLoggedIn = sessionStorage.getItem('loggedIn'); // Check login status (e.g., stored in sessionStorage)
+      
+      if (isLoggedIn) {
+        alert("You can proceed with your purchase!");
+      } else {
+        alert("Please log in to add products to the cart or make a purchase.");
+        // Redirect to login page
+        window.location.href = "login.html";
+      }
+    }
+
+    function loginUser() {
+      sessionStorage.setItem('loggedIn', true); // Simulate login (set a session flag)
+      alert("Login successful! You can now add products to the cart.");
+    }
+
   </script>
 </body>
 </html>
