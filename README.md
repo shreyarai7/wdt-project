@@ -298,7 +298,7 @@
         const isLoginConfirmed = confirm("You need to log in to make a purchase or view your cart. Would you like to go to the login page?");
         if (isLoginConfirmed) {
             // If user clicks OK, redirect to the login page
-            window.location.href = 'loginpage.html';
+            window.location.href = 'login.html';
         }
     }
 
@@ -357,7 +357,7 @@
         function showLoginPrompt() {
             const isLoginConfirmed = confirm("You need to log in first. Do you want to go to the login page?");
             if (isLoginConfirmed) {
-                window.location.href = 'loginpage.html';
+                window.location.href = 'login.html';
             }
         }
 
@@ -409,7 +409,7 @@
                 const isLoginConfirmed = confirm("You need to login first. Do you want to go to the login page?");
                 if (isLoginConfirmed) {
                     // If user clicks OK, redirect to the login page
-                    window.location.href = 'loginpage.html';
+                    window.location.href = 'login.html';
                 }
             } else {
                 // If logged in, display product options
