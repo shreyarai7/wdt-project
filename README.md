@@ -269,253 +269,107 @@
         <p>© 2024 GreenAura. All Rights Reserved. | <a href="cer.html">Shop Now</a></p>
     </footer>
 
-    <!-- JavaScript -->
-    <script>
-        // Shop Now Button Alert
-        document.getElementById('shop-now').addEventListener('click', function () {
-            alert('Redirecting to our product page!');
-            location.href = 'cer.html';
+   <script>
+    // Shop Now Button Alert
+    document.getElementById('shop-now').addEventListener('click', function () {
+        alert('Redirecting to our product page!');
+        location.href = 'cer.html';
+    });
+
+    // Search Functionality
+    document.getElementById('search-button').addEventListener('click', function () {
+        const query = document.getElementById('shop-now').value.toLowerCase();
+        const products = document.querySelectorAll('.product-card');
+
+        products.forEach(product => {
+            const title = product.querySelector('h3').textContent.toLowerCase();
+            if (title.includes(query)) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
         });
-
-        // Search Functionality
-        document.getElementById('search-button').addEventListener('click', function () {
-            const query = document.getElementById('shop-now').value.toLowerCase();
-            const products = document.querySelectorAll('product-card');
-
-            products.forEach(product => {
-                const title = product.querySelector('h3').textContent.toLowerCase();
-                if (title.includes(query)) {
-                    product.style.display = 'block';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-        });
-    </script>
-    <script>
-    function showLoginPrompt() {
-        // Show a custom alert box with a message asking user to login
-        const isLoginConfirmed = confirm("You need to log in to make a purchase or view your cart. Would you like to go to the login page?");
-        if (isLoginConfirmed) {
-            // If user clicks OK, redirect to the login page
-            window.location.href = 'login.html';
-        }
-    }
-
-    // Function to attach event listeners to buttons and product cart div
-    function attachLoginPrompt() {
-        const buyNowButton = document.getElementById('shop-now'); // Button to Buy Now
-        const addToCartButton = document.getElementById('product-cards'); // Button to Add to Cart
-        const productCart = document.getElementById('productCart'); // Div for the product cart
-
-        // Attach event listener to the "Buy Now" button
-        if (buyNowButton) {
-            buyNowButton.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent the default action of the button (navigation)
-                showLoginPrompt(); // Show login prompt
-            });
-        }
-
-        // Attach event listener to the "Add to Cart" button
-        if (addToCartButton) {
-            addToCartButton.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent the default action (adding item to cart)
-                showLoginPrompt(); // Show login prompt
-            });
-        }
-
-        // Attach event listener to the "productCart" div (if user interacts with the product cart)
-        if (productCart) {
-            productCart.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default behavior (viewing cart or navigating)
-                showLoginPrompt(); // Show login prompt
-            });
-        }
-    }
-
-    // Attach login prompt functionality when the page loads
-    window.onload = function() {
-        attachLoginPrompt();
-    };
+    });
 </script>
 
-   
-    
-    <!-- Example HTML structure for the product section -->
-    <div id="product-section">
-        <!-- Product buttons will appear here based on login status -->
-    </div>
-    
-     <!-- JavaScript -->
-     <script>
-        // Check login status
-        function isLoggedIn() {
-            return localStorage.getItem('isLoggedIn') === 'true';
-        }
+<script>
+// Check if the user is logged in using localStorage
+function isLoggedIn() {
+    return localStorage.getItem('userLoggedIn') === 'true';
+}
 
-        // Show login prompt
-        function showLoginPrompt() {
+// Function to show the login prompt if the user is not logged in
+function showLoginPrompt() {
+    if (!isLoggedIn()) {
+        const hasPromptShown = localStorage.getItem('hasPromptShown');
+
+        // If prompt hasn't been shown yet, show the prompt
+        if (!hasPromptShown) {
             const isLoginConfirmed = confirm("You need to log in first. Do you want to go to the login page?");
             if (isLoginConfirmed) {
-                window.location.href = 'login.html';
-            }
-        }
-
-        // Attach event listeners to buttons
-        function attachEventListeners() {
-            const shopNowButton = document.getElementById('shop-now');
-            const viewProductButtons = document.querySelectorAll('.view-product');
-
-            // Shop Now button
-            if (shopNowButton) {
-                shopNowButton.addEventListener('click', function () {
-                    if (isLoggedIn()) {
-                        window.location.href = 'cer.html';
-                    } else {
-                        showLoginPrompt();
-                    }
-                });
+                window.location.href = 'loginpage.html';
             }
 
-            // View Product buttons
-            viewProductButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    if (isLoggedIn()) {
-                        alert('Viewing product details...');
-                    } else {
-                        showLoginPrompt();
-                    }
-                });
-            });
+            // Mark that the prompt has been shown
+            localStorage.setItem('hasPromptShown', 'true');
         }
+    } else {
+        // If logged in, display product options
+        alert("You are logged in! Check out our products.");
+        showProductOptions(); // Call function to show product buttons
+    }
+}
 
-        // Initialize the application
-        window.onload = function () {
-            attachEventListeners();
-        };
-    </script>
-    <script>
-        // Function to check if the user is logged in
-        function isLoggedIn() {
-            // This is an example, you can replace this logic with a real check (like checking a session or a cookie)
-            return localStorage.getItem("userLoggedIn") === "true";
-        }
-    
-        // Function to show the login prompt if the user is not logged in
-        function showLoginPrompt() {
-            // Check if the user is logged in
-            if (!isLoggedIn()) {
-                // Show a prompt before the product button if not logged in
-                const isLoginConfirmed = confirm("You need to login first. Do you want to go to the login page?");
-                if (isLoginConfirmed) {
-                    // If user clicks OK, redirect to the login page
-                    window.location.href = 'login.html';
-                }
-            } else {
-                // If logged in, display product options
-                alert("You are logged in! Check out our products.");
-                // You can add product display logic here as well
-                showProductOptions();
-            }
-        }
-    
-        // Function to display product options (buttons)
-        function showProductOptions() {
-            const productSection = document.getElementById('product-section');
-            productSection.innerHTML = `
-                <button onclick="viewProduct()">View Product</button>
-                <button onclick="shopNow()">Shop Now</button>
-            `;
-        }
-    
-        // Function to handle viewing the product
-        function viewProduct() {
-            alert("Redirecting to the product page...");
-            window.location.href = 'cer.html'; // Replace with your product page URL
-        }
-    
-        // Function to handle the shop now action
-        function shopNow() {
-            alert("Redirecting to the shop page...");
-            window.location.href = 'cer.html'; // Replace with your shop now page URL
-        }
-    
-        // Call the function when the page loads
-        window.onload = function() {
-            showLoginPrompt();
-        };
-    </script>
-    <script>
-        // Function to check if the user is logged in using localStorage
-        function isLoggedIn() {
-            // Check the value in localStorage
-            return localStorage.getItem("userLoggedIn") === "true";
-        }
-    
-        // Function to show the login prompt if the user is not logged in
-        function showLoginPrompt() {
-            // Check if the user is logged in
-            if (!isLoggedIn()) {
-                // Show a prompt before the product button if not logged in
-                const isLoginConfirmed = confirm("You need to login first. Do you want to go to the login page?");
-                if (isLoginConfirmed) {
-                    // If user clicks OK, redirect to the login page
-                    window.location.href = 'loginpage.html';
-                }
-            } else {
-                // If logged in, display product options
-                alert("You are logged in! Check out our products.");
-                showProductOptions(); // Call function to show product buttons
-            }
-        }
-    
-        // Function to display product options (buttons)
-        function showProductOptions() {
-            const productSection = document.getElementById('product-section');
-            productSection.innerHTML = `
-                <button onclick="viewProduct()">View Product</button>
-                <button onclick="shopNow()">Shop Now</button>
-            `;
-        }
-    
-        // Function to handle viewing the product
-        function viewProduct() {
-            alert("Redirecting to the product page...");
-            window.location.href = 'cer.html'; // Replace with your product page URL
-        }
-    
-        // Function to handle the shop now action
-        function shopNow() {
-            alert("Redirecting to the shop page...");
-            window.location.href = 'cer.html'; // Replace with your shop now page URL
-        }
-    
-        // Function to simulate logging in the user (for demonstration purposes)
-        function loginUser() {
-            localStorage.setItem("userLoggedIn", "true"); // Set login status in localStorage
-            alert("You are now logged in!");
-        }
-    
-        // Function to simulate logging out the user (for demonstration purposes)
-        function logoutUser() {
-            localStorage.setItem("userLoggedIn", "false"); // Set login status in localStorage
-            alert("You are now logged out!");
-        }
-    
-        // Call the function when the page loads to check login status
-        window.onload = function() {
-            showLoginPrompt();
-        };
-    </script>
-    
-    <!-- Example HTML structure for the product section -->
-    <div id="product-section">
-        <!-- Product buttons will appear here based on login status -->
-    </div>
-    
-    <!-- Example buttons to simulate login/logout -->
-    <button onclick="loginUser()">Log In</button>
-    <button onclick="logoutUser()">Log Out</button>
+// Function to display product options (buttons)
+function showProductOptions() {
+    const productSection = document.getElementById('product-section');
+    productSection.innerHTML = `
+        <button onclick="viewProduct()">View Product</button>
+        <button onclick="shopNow()">Shop Now</button>
+    `;
+}
+
+// Function to handle viewing the product
+function viewProduct() {
+    alert("Redirecting to the product page...");
+    window.location.href = 'cer.html'; // Replace with your product page URL
+}
+
+// Function to handle the shop now action
+function shopNow() {
+    alert("Redirecting to the shop page...");
+    window.location.href = 'cer.html'; // Replace with your shop now page URL
+}
+
+// Function to simulate logging in the user (for demonstration purposes)
+function loginUser() {
+    localStorage.setItem("userLoggedIn", "true"); // Set login status in localStorage
+    alert("You are now logged in!");
+    localStorage.setItem('hasPromptShown', 'false'); // Reset prompt shown flag
+}
+
+// Function to simulate logging out the user (for demonstration purposes)
+function logoutUser() {
+    localStorage.setItem("userLoggedIn", "false"); // Set login status in localStorage
+    alert("You are now logged out!");
+    localStorage.setItem('hasPromptShown', 'false'); // Reset prompt shown flag
+}
+
+// Call the function when the page loads to check login status
+window.onload = function() {
+    showLoginPrompt();
+};
+</script>
+
+<!-- Example HTML structure for the product section -->
+<div id="product-section">
+    <!-- Product buttons will appear here based on login status -->
+</div>
+
+<!-- Example buttons to simulate login/logout -->
+<button onclick="loginUser()">Log In</button>
+<button onclick="logoutUser()">Log Out</button>
+
     
 </body>
 </html>
