@@ -232,10 +232,7 @@ footer {
         <h3>Eco Products</h3>
         <p>High-quality products that are kind to the planet.</p>
       </div>
-      <div class="card">
-        <h3>Consulting</h3>
-        <p>Expert advice on sustainability for businesses and individuals.</p>
-      </div>
+     
       <div class="card">
         <h3>Workshops</h3>
         <p>Interactive sessions to teach eco-friendly practices.</p>
