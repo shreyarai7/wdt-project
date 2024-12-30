@@ -201,7 +201,7 @@ footer {
       <img src="galogo.jpg" alt="GreenAura Logo" class="logo">
       <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
       <ul class="nav-links">
-        <li><a href="popo.html">Home</a></li>
+        <li><a href="login.html">login</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="cer.html">products</a></li>
         <li><a href="#contact">Contact</a></li>
