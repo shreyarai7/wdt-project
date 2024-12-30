@@ -1,286 +1,344 @@
 
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GreenAura</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <script defer src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenAura Shopping</title>
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Section */
+        header {
+            background: #2d6a4f;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.8em;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #1b4332;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Section */
+        main {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 10px;
+        }
+
+        .hero {
+            background: #95d5b2;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .hero button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background: #1b4332;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .hero button:hover {
+            background: #081c15;
+        }
+
+        /* Search Section */
+        .search-block {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .search-block input {
+            padding: 10px;
+            font-size: 1em;
+            width: 70%;
+            max-width: 500px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-block button {
+            padding: 10px 20px;
+            background: #2d6a4f;
+            color: white;
+            border: none;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-block button:hover {
+            background: #1b4332;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            font-size: 0.9em;
+            margin: 5px 10px;
+        }
+
+        .product-card a {
+            display: block;
+            padding: 10px;
+            background: #2d6a4f;
+            color: white;
+            text-decoration: none;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .product-card a:hover {
+            background: #1b4332;
+        }
+
+        /* Footer Section */
+        footer {
+            background: #2d6a4f;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+
+        footer p {
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #f39c12;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .hero h2 {
+                font-size: 1.5em;
+            }
+
+            nav a {
+                font-size: 0.9em;
+                margin: 0 8px;
+            }
+        }
+        /* Responsive Design */
+@
+}
+    </style>
 </head>
-<style>
-    /* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.6;
-  background: #f0f8f4;
-  color: #333;
-  scroll-behavior: smooth;
-}
-
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: linear-gradient(90deg, #004d40, #00796b);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.logo {
-  width: 140px;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-}
-
-.nav-links li {
-  margin-left: 20px;
-}
-
-.nav-links a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.menu-toggle {
-  display: none;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  color: #fff;
-}
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    background: #004d40;
-    position: absolute;
-    right: 0;
-    top: 60px;
-    width: 200px;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-}
-
-/* Hero Section */
-.hero {
-  height: 100vh;
-  background: linear-gradient(to right, #b9fbc0, #00c853);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #fff;
-}
-
-.hero h1 {
-  font-size: 3rem;
-}
-
-.hero .highlight {
-  color: #ffcc80;
-}
-
-.hero .btn {
-  margin-top: 1.5rem;
-  padding: 0.8rem 1.5rem;
-  background: #00796b;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.hero .btn:hover {
-  background: #004d40;
-}
-
-/* About Section */
-.about {
-  padding: 4rem 2rem;
-  text-align: center;
-  background: #f9fbe7;
-}
-
-/* Services Section */
-.services {
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
-.service-cards {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.card {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  text-align: center;
-}
-
-/* Contact Section */
-.contact {
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.contact-form .btn {
-  background: #00796b;
-  color: #fff;
-}
-
-/* Footer */
-footer {
-  padding: 1rem;
-  text-align: center;
-  background: #004d40;
-  color: #fff;
-}
-
-/* Scroll-to-Top Button */
-#scrollToTop {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #00796b;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  padding: 0.8rem;
-  display: none;
-  cursor: pointer;
-}
-
-#scrollToTop:hover {
-  background: #004d40;
-}
-</style>
 <body>
-  <!-- Navbar -->
-  <header>
-    <nav class="navbar">
-      <img src="galogo.jpg" alt="GreenAura Logo" class="logo">
-      <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
-      <ul class="nav-links">
-        <li><a href="login.html">login</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="cer.html">products</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="galogo.jpg"  /> </div>
+        <h1>Welcome to GreenAura</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="popo.html">Home</a>
+        <a href ="cer.html">products</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      
     </nav>
-  </header>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h1>Welcome to <span class="highlight">GreenAura</span></h1>
-      <p>Discover the beauty of sustainability and transform the world with eco-friendly choices.</p>
-      <a href="about.html" class="btn">Learn More</a>
-    </div>
-  </section>
+    <!-- Main Section -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>Discover Your Green Haven</h2>
+            <p>Your one-stop destination for plants, pots, and more.</p>
+            <button id="shop-now">Shop Now</button>
+        </section>
 
-  <!-- About Section -->
-  <section id="about" class="about">
-    <h2>About Us</h2>
-    <p>GreenAura is dedicated to promoting sustainable living through eco-friendly solutions. Join us on this journey to a greener future.</p>
-  </section>
+        <!-- Search Section -->
+        <div class="search-block">
+            <input type="text" id="search-bar" placeholder="Search for products...">
+            <button id="search-button">Search</button>
+        </div>
 
-  <!-- Services Section -->
-  <section id="services" class="services">
-    <h2>Our Services</h2>
-    <div class="service-cards">
-      <div class="card">
-        <h3>Eco Products</h3>
-        <p>High-quality products that are kind to the planet.</p>
-      </div>
-     
-      <div class="card">
-        <h3>Workshops</h3>
-        <p>Interactive sessions to teach eco-friendly practices.</p>
-      </div>
-    </div>
-  </section>
+        <!-- Product Section -->
+        <section class="product-grid">
+            <div class="product-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNUN6DTUg9burPhFIU4Y8D-9Hy2_IYcE-DJw&s" alt="Indoor Plant">
+                <h3>Indoor Plant</h3>
+                <p>Perfect for adding life to your home.</p>
+                <a href="cer.html">View Product</a>
+            </div>
+            <div class="product-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzX-5OQNI1jLQAydkjHEu3abhdcuZTbT4dJQ&s" alt="Outdoor Plant">
+                <h3>Outdoor Plant</h3>
+                <p>Ideal for your garden or balcony.</p>
+                <a href="cer.html">View Product</a>
+            </div>
+            <div class="product-card">
+                <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTbmgYWA1ahAydNumSgaxb8a-02XFyo_2sbbkQsAkV8aV9immfi91ILmW7bslIwALmRrnyWiclrfaOohWZp9vg5_lbJq0v6nqU1GkMza2m6" alt="Cactus">
+                <h3>Cactus</h3>
+                <p>Low-maintenance and stylish.</p>
+                <a href="cer.html">View Product</a>
+            </div>
+        </section>
+    </main>
 
-  <!-- Contact Section -->
-  <section id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <form class="contact-form">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit" class="btn">Send Message</button>
-    </form>
-  </section>
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 GreenAura. All Rights Reserved. | <a href="cer.html">Shop Now</a></p>
+    </footer>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2024 GreenAura | Designed with ❤ for sustainability.</p>
-  </footer>
+    <!-- JavaScript -->
+    <script>
+        // Shop Now Button Alert
+        document.getElementById('shop-now').addEventListener('click', function () {
+            alert('Redirecting to our product page!');
+            location.href = 'cer.html';
+        });
 
-  <!-- Scroll-to-Top Button -->
-  <button id="scrollToTop" aria-label="Scroll to top">↑</button>
-<script>
-    // Navbar Toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
+        // Search Functionality
+        document.getElementById('search-button').addEventListener('click', function () {
+            const query = document.getElementById('shop-now').value.toLowerCase();
+            const products = document.querySelectorAll('product-card');
 
-menuToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-});
+            products.forEach(product => {
+                const title = product.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(query)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    <script>
+    function showLoginPrompt() {
+        // Show a custom alert box with a message asking user to login
+        const isLoginConfirmed = confirm("You need to log in to make a purchase or view your cart. Would you like to go to the login page?");
+        if (isLoginConfirmed) {
+            // If user clicks OK, redirect to the login page
+            window.location.href = 'login.html';
+        }
+    }
 
-// Scroll-to-Top Button
-const scrollToTopButton = document.getElementById('scrollToTop');
+    // Function to attach event listeners to buttons and product cart div
+    function attachLoginPrompt() {
+        const buyNowButton = document.getElementById('shop-now'); // Button to Buy Now
+        const addToCartButton = document.getElementById('product-cards'); // Button to Add to Cart
+        const productCart = document.getElementById('productCart'); // Div for the product cart
 
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) {
-    scrollToTopButton.style.display = 'block';
-  } else {
-    scrollToTopButton.style.display = 'none';
-  }
-});
+        // Attach event listener to the "Buy Now" button
+        if (buyNowButton) {
+            buyNowButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default action of the button (navigation)
+                showLoginPrompt(); // Show login prompt
+            });
+        }
 
-scrollToTopButton.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+        // Attach event listener to the "Add to Cart" button
+        if (addToCartButton) {
+            addToCartButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default action (adding item to cart)
+                showLoginPrompt(); // Show login prompt
+            });
+        }
+
+        // Attach event listener to the "productCart" div (if user interacts with the product cart)
+        if (productCart) {
+            productCart.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default behavior (viewing cart or navigating)
+                showLoginPrompt(); // Show login prompt
+            });
+        }
+    }
+
+    // Attach login prompt functionality when the page loads
+    window.onload = function() {
+        attachLoginPrompt();
+    };
 </script>
+    
 </body>
 </html>
+
+ 
