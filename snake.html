@@ -7,137 +7,210 @@
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(45deg, #a8ff78, #78ffd6);
-      animation: gradientMove 10s infinite alternate;
+      background-color: #f0f0f0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
       overflow: hidden;
+      position: relative;
+      background: linear-gradient(45deg, #a8ff78, #78ffd6); /* Smooth gradient background */
+      animation: gradientMove 10s infinite alternate;
     }
 
+    /* Animation for background gradient */
     @keyframes gradientMove {
-      0% { background: linear-gradient(45deg, #a8ff78, #78ffd6); }
-      100% { background: linear-gradient(45deg, #ff9a8b, #ffc3a0); }
+      0% {
+        background: linear-gradient(45deg, #a8ff78, #78ffd6);
+      }
+      100% {
+        background: linear-gradient(45deg, #ff9a8b, #ffc3a0);
+      }
     }
 
     .product-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
       width: 320px;
+      height: auto;
+      transition: transform 0.4s ease;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
       border-radius: 12px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      background: #fff;
+      background: white;
       overflow: hidden;
-      transition: transform 0.3s ease-in-out;
     }
 
     .product-wrapper:hover {
-      transform: translateY(-10px);
+      transform: scale(1.05);
     }
 
     .product-image {
       width: 100%;
       height: 250px;
-      background-image: url('snake.jpg'); /* Replace with your image URL */
+      background-image: url('snake.jpg');
       background-size: cover;
       background-position: center;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.4s ease, filter 0.4s ease;
     }
 
-    .product-content {
-      padding: 20px;
+    .product-wrapper:hover .product-image {
+      transform: scale(1.1);
+      filter: brightness(1.2);
+    }
+
+    .product-info {
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
       text-align: center;
+      margin-top: 20px;
+      transform: translateY(20px);
     }
 
-    .product-title {
-      font-size: 1.5rem;
-      margin: 0 0 10px;
+    .product-wrapper:hover .product-info {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .product-info h2 {
+      font-size: 1.8rem;
       color: #333;
+      margin: 10px 0;
+      font-family: 'Courier New', Courier, monospace;
+      letter-spacing: 2px;
     }
 
-    .product-button {
-      background: #78ffd6;
-      color: #fff;
+    .product-info p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .product-info .price {
+      font-size: 1.5rem;
+      color: #4CAF50;
+      font-weight: bold;
+      margin-top: 10px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .offer {
+      background-color: #FF6347;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      margin-top: 10px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    }
+
+    .product-wrapper:hover .offer {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .button-container {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      background-color: #4CAF50;
+      color: white;
       border: none;
-      padding: 10px 20px;
+      border-radius: 5px;
       font-size: 1rem;
       cursor: pointer;
-      border-radius: 5px;
-      transition: background 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .product-button:hover {
-      background: #a8ff78;
+    .btn:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
     }
+
+    .btn:active {
+      transform: scale(1);
+      box-shadow: none;
+    }
+
+    /* Floating animation for the plant */
+    @keyframes floating {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+
   </style>
 </head>
 <body>
+
   <div class="product-wrapper">
-    <div class="product-image"></div>
-    <div class="product-content">
-      <h2 class="product-title">Snake Plant</h2>
-      <button class="product-button" onclick="showLoginPrompt()">Buy Now</button>
+    <div class="product-image floating"></div>
+    <div class="product-info">
+      <h2>Snake Plant</h2>
+      <p>A perfect low-maintenance, air-purifying plant that's easy to care for. Ideal for both beginners and seasoned plant lovers.</p>
+      <p class="price">$10.00</p>
+      <div class="offer">10% OFF Today!</div>
+      <div class="button-container">
+        <button class="btn" onclick="addToCart()">Add to Cart</button>
+        <button class="btn" onclick="window.location.href='buy.html'">Buy Now</button>
+      </div>
     </div>
   </div>
 
   <script>
-    function showLoginPrompt() {
-      const modal = document.createElement('div');
-      modal.style.position = 'fixed';
-      modal.style.top = '0';
-      modal.style.left = '0';
-      modal.style.width = '100vw';
-      modal.style.height = '100vh';
-      modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-      modal.style.display = 'flex';
-      modal.style.justifyContent = 'center';
-      modal.style.alignItems = 'center';
-      modal.style.zIndex = '1000';
-
-      const modalContent = document.createElement('div');
-      modalContent.style.backgroundColor = '#fff';
-      modalContent.style.padding = '20px';
-      modalContent.style.borderRadius = '10px';
-      modalContent.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
-      modalContent.style.textAlign = 'center';
-
-      const message = document.createElement('p');
-      message.textContent = 'You need to login first. Do you want to go to the login page?';
-      message.style.marginBottom = '20px';
-
-      const btnYes = document.createElement('button');
-      btnYes.textContent = 'Yes';
-      btnYes.style.marginRight = '10px';
-      btnYes.style.padding = '10px 20px';
-      btnYes.style.border = 'none';
-      btnYes.style.background = '#78ffd6';
-      btnYes.style.color = '#fff';
-      btnYes.style.cursor = 'pointer';
-      btnYes.style.borderRadius = '5px';
-
-      const btnNo = document.createElement('button');
-      btnNo.textContent = 'No';
-      btnNo.style.padding = '10px 20px';
-      btnNo.style.border = 'none';
-      btnNo.style.background = '#ccc';
-      btnNo.style.color = '#333';
-      btnNo.style.cursor = 'pointer';
-      btnNo.style.borderRadius = '5px';
-
-      btnYes.onclick = () => {
-        window.location.href = 'loginpage.html';
-      };
-
-      btnNo.onclick = () => {
-        document.body.removeChild(modal);
-      };
-
-      modalContent.appendChild(message);
-      modalContent.appendChild(btnYes);
-      modalContent.appendChild(btnNo);
-      modal.appendChild(modalContent);
-      document.body.appendChild(modal);
+    function addToCart() {
+      alert("Added to Cart!");
     }
   </script>
+  <script>
+// Function to show login prompt
+function showLoginPrompt() {
+    const isLoginConfirmed = confirm("You need to log in first. Do you want to go to the login page?");
+    if (isLoginConfirmed) {
+        window.location.href = 'loginpage.html';
+    }
+}
+
+// Function to animate the gradient background
+function startGradientAnimation() {
+    const body = document.body;
+    let currentGradient = 0;
+    const gradients = [
+        'linear-gradient(45deg, #a8ff78, #78ffd6)',
+        'linear-gradient(45deg, #ff9a8b, #ffc3a0)',
+    ];
+    
+    setInterval(() => {
+        currentGradient = (currentGradient + 1) % gradients.length;
+        body.style.background = gradients[currentGradient];
+    }, 5000);
+}
+
+// Initiate gradient animation when the page loads
+document.addEventListener('DOMContentLoaded', startGradientAnimation);
+</script>
 </body>
 </html>
