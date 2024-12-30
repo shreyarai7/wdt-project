@@ -172,115 +172,121 @@ h2 {
       </a>
     </div>
 </div>
-   
- 
-<script>
-    // List of products with image and price properties
-    const products = [
-      { name: "Snake Plant", price: 10, image: "snake_plant.jpg" },
-      { name: "Money Plant", price: 12, image: "money_plant.jpg" },
-      { name: "Aloe Vera", price: 8, image: "aloe_vera.jpg" },
-      { name: "Peace Lily", price: 15, image: "peace_lily.jpg" },
-      { name: "Spider Plant", price: 9, image: "spider_plant.jpg" },
-      { name: "Fiddle Leaf Fig", price: 30, image: "fiddle_leaf_fig.jpg" },
-      { name: "Rubber Plant", price: 18, image: "rubber_plant.jpg" },
-      { name: "Jade Plant", price: 25, image: "jade_plant.jpg" }
-    ];
+   <script>
+// List of products with image and price properties
+const products = [
+  { name: "Snake Plant", price: 10, image: "snake_plant.jpg" },
+  { name: "Money Plant", price: 12, image: "money_plant.jpg" },
+  { name: "Aloe Vera", price: 8, image: "aloe_vera.jpg" },
+  { name: "Peace Lily", price: 15, image: "peace_lily.jpg" },
+  { name: "Spider Plant", price: 9, image: "spider_plant.jpg" },
+  { name: "Fiddle Leaf Fig", price: 30, image: "fiddle_leaf_fig.jpg" },
+  { name: "Rubber Plant", price: 18, image: "rubber_plant.jpg" },
+  { name: "Jade Plant", price: 25, image: "jade_plant.jpg" }
+];
 
-    const productList = document.getElementById("product-list");
-    const cartItems = document.getElementById("cart-items");
-    const cartTotal = document.getElementById("cart-total");
-    const buyNowButton = document.getElementById("buy-now-button");
+const productList = document.getElementById("product-list");
+const cartItems = document.getElementById("cart-items");
+const cartTotal = document.getElementById("cart-total");
+const buyNowButton = document.getElementById("buy-now-button");
 
-    let cart = [];
+let cart = [];
 
-    // Function to create product cards dynamically
-    function displayProducts() {
-      products.forEach((product, index) => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <img src="${product.image}" alt="${product.name}">
-          <h3>${product.name}</h3>
-          <p>Price: $${product.price}</p>
-          <button onclick="addToCart(${index})">Add to Cart</button>
-        `;
-        productList.appendChild(card);
-      });
+// Function to create product cards dynamically
+function displayProducts() {
+  products.forEach((product, index) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="${product.image}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p>Price: $${product.price}</p>
+      <button onclick="addToCart(${index})">Add to Cart</button>
+    `;
+    productList.appendChild(card);
+  });
+}
+
+// Function to add product to the cart
+function addToCart(index) {
+  const product = products[index];
+  cart.push(product);
+  updateCart();
+}
+
+// Function to update the cart UI
+function updateCart() {
+  cartItems.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item) => {
+    total += item.price;
+    const cartItem = document.createElement("div");
+    cartItem.className = "cart-item";
+    cartItem.innerHTML = `
+      <span>${item.name}</span>
+      <span>$${item.price}</span>
+    `;
+    cartItems.appendChild(cartItem);
+  });
+
+  if (cart.length === 0) {
+    cartItems.innerHTML = "<p>Your cart is empty!</p>";
+  }
+
+  cartTotal.textContent = total.toFixed(2);
+}
+
+// Function to check login status and proceed with purchase
+function checkLogin() {
+  const isLoggedIn = localStorage.getItem('loggedIn'); // Check login status in localStorage
+
+  if (!isLoggedIn) {
+    alert("Please log in to add products to the cart or make a purchase.");
+    window.location.href = "login.html"; // Redirect to login page if not logged in
+    return false; // Prevent further action
+  }
+  return true; // Allow the action if logged in
+}
+
+// Function to handle Buy Now click
+function buyNow() {
+  if (checkLogin()) {
+    alert("You can proceed with your purchase!");
+    window.location.href = "buy.html"; // Redirect to the Buy page
+  }
+}
+
+// Function to simulate login for demonstration
+function loginUser() {
+  localStorage.setItem('loggedIn', true); // Simulate login by setting a flag in localStorage
+  alert("Login successful! You can now add products to the cart.");
+}
+
+// Initialize the product list when the page loads
+window.onload = function() {
+  const isLoggedIn = localStorage.getItem('loggedIn'); // Check if already logged in
+  if (isLoggedIn) {
+    // If logged in, skip showing login prompt
+    buyNowButton.disabled = false; // Enable Buy Now button
+  } else {
+    // If not logged in, show the login prompt or any necessary message
+    buyNowButton.disabled = true; // Disable Buy Now button if not logged in
+  }
+
+  displayProducts(); // Show product list
+  attachLoginPrompt(); // Attach the login prompt functionality to the Buy Now button
+};
+
+// Function to prompt the user to log in if they attempt to buy without logging in
+function attachLoginPrompt() {
+  buyNowButton.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default action (navigation)
+    if (checkLogin()) {
+      buyNow(); // Proceed with purchase if logged in
     }
-
-    // Function to add product to the cart
-    function addToCart(index) {
-      const product = products[index];
-      cart.push(product);
-      updateCart();
-    }
-
-    // Function to update the cart UI
-    function updateCart() {
-      cartItems.innerHTML = "";
-      let total = 0;
-
-      cart.forEach((item) => {
-        total += item.price;
-        const cartItem = document.createElement("div");
-        cartItem.className = "cart-item";
-        cartItem.innerHTML = `
-          <span>${item.name}</span>
-          <span>$${item.price}</span>
-        `;
-        cartItems.appendChild(cartItem);
-      });
-
-      if (cart.length === 0) {
-        cartItems.innerHTML = "<p>Your cart is empty!</p>";
-      }
-
-      cartTotal.textContent = total.toFixed(2);
-    }
-
-    // Function to check login status and proceed with purchase
-    function checkLogin() {
-      const isLoggedIn = localStorage.getItem('loggedIn'); // Check login status in localStorage
-
-      if (!isLoggedIn) {
-        alert("Please log in to add products to the cart or make a purchase.");
-        window.location.href = "login.html"; // Redirect to login page if not logged in
-        return false; // Prevent further action
-      }
-      return true; // Allow the action if logged in
-    }
-
-    // Function to handle Buy Now click
-    function buyNow() {
-      if (checkLogin()) {
-        alert("You can proceed with your purchase!");
-        // Continue to the purchase page or proceed with further actions
-        window.location.href = "buy.html"; // Redirect to the Buy page
-      }
-    }
-
-    // Function to simulate login for demonstration
-    function loginUser() {
-      localStorage.setItem('loggedIn', true); // Simulate login by setting a flag in localStorage
-      alert("Login successful! You can now add products to the cart.");
-    }
-
-    // Initialize the product list when the page loads
-    window.onload = function() {
-      displayProducts();
-      attachLoginPrompt(); // Attach the login prompt functionality to the Buy Now button
-    };
-
-    // Function to prompt the user to log in if they attempt to buy without logging in
-    function attachLoginPrompt() {
-      buyNowButton.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default action (navigation)
-        if (checkLogin()) {
-          buyNow(); // Proceed with purchase if logged in
-        }
-      });
-    }
-  </script>
+  });
+}
+</script>
 </body>
 </html>
