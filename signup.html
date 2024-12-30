@@ -1,138 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
-    <script defer src="signup.js"></script>
-</head>
-<style>
-    /* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-form {
-    background: #ffffff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-size: 24px;
-    color: #333;
-}
-
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-    color: #555;
-}
-
-input {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-button {
-    width: 100%;
-    background-color: #4caf50;
-    color: white;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-p {
-    text-align: center;
-    margin-top: 1rem;
-    color: #666;
-}
-
-a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup - JavaScript Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f7f7f7;
+    }
     form {
-        padding: 1rem;
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 300px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-
-    h1 {
-        font-size: 20px;
+    input {
+      width: 90%;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
-
-    input, button {
-        font-size: 14px;
+    button {
+      background: #28a745;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
     }
-}
-</style>
+    button:hover {
+      background: #218838;
+    }
+  </style>
+</head>
 <body>
-    <h1>Signup</h1>
-    <form id="signupForm">
-        <label for="username">Username:</label>
-        <input type="text" id="username" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" required>
-        <br>
-        <button type="submit">Sign Up</button>
-    </form>
-    <p>Already have an account? <a href="login.html">Login here</a></p>
+  <h1>Signup Page</h1>
+  <form id="signup-form">
+    <input type="text" id="signup-username" placeholder="Username" required /><br>
+    <input type="password" id="signup-password" placeholder="Password" required /><br>
+    <button type="button" onclick="signup()">Signup</button>
+  </form>
+  <p>Already have an account? <a href="login.html">Login</a></p>
 
-
-<script>
-    document.getElementById('signupForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-
-    // Check if the user already exists in local storage
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-    const userExists = users.some(user => user.username === username);
-
-    if (userExists) {
-        alert('User already exists. Please log in.');
-    } else {
-        // Add the new user to local storage
-        users.push({ username, password });
-        localStorage.setItem('users', JSON.stringify(users));
-        alert('Signup successful! You can now log in.');
-        window.location.href = 'login.html';
+  <script>
+    // Get users from localStorage (simulated database)
+    function getUsersFromStorage() {
+      return JSON.parse(localStorage.getItem("users")) || [];
     }
-});
-</script>
+
+    // Signup function
+    function signup() {
+      const username = document.getElementById("signup-username").value;
+      const password = document.getElementById("signup-password").value;
+      const users = getUsersFromStorage();
+
+      // Check if the username already exists
+      if (users.some(user => user.username === username)) {
+        alert("Username already exists. Please choose another one.");
+        return;
+      }
+
+      // Add new user to localStorage
+      users.push({ username, password });
+      localStorage.setItem("users", JSON.stringify(users));
+
+      alert("Signup successful! Please log in.");
+      window.location.href = "login.html"; // Redirect to login page
+    }
+  </script>
 </body>
-
-
 </html>
